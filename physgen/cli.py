@@ -5,7 +5,7 @@ python -m physgen generate --config cfg.yaml --split train --num-scenes 5000 --w
 python -m physgen preview  --split train --index 0 [--scenario stack] --out previews
 python -m physgen validate --root dataset_root
 python -m physgen audit    --root dataset_root
-python -m physgen export-features --root dataset_root --model MCG-NJU/videomae-base
+python -m physgen export-features --root dataset_root [--model OpenGVLab/VideoMAEv2-Base]
 """
 import argparse
 import json
@@ -181,6 +181,11 @@ def cmd_audit(a):
     audit(a.root, probes=not a.no_probes)
 
 
+def cmd_card(a):
+    from .card import write_card
+    write_card(a.root)
+
+
 def cmd_export_features(a):
     from .features import export
     export(a.root, a.model, a.window, a.stride, a.batch, a.device)
@@ -232,9 +237,12 @@ def main(argv=None):
     au.add_argument("--root", default="dataset_root")
     au.add_argument("--no-probes", action="store_true")
     au.set_defaults(fn=cmd_audit)
+    cd = sub.add_parser("card", help="write the dataset card (README.md) into the dataset root")
+    cd.add_argument("--root", default="dataset_root")
+    cd.set_defaults(fn=cmd_card)
     ef = sub.add_parser("export-features")
     ef.add_argument("--root", default="dataset_root")
-    ef.add_argument("--model", default="MCG-NJU/videomae-base", help="any Hugging Face video backbone id")
+    ef.add_argument("--model", default="OpenGVLab/VideoMAEv2-Base", help="Hugging Face video backbone id (doc: VideoMAE V2)")
     ef.add_argument("--window", type=int, default=16)
     ef.add_argument("--stride", type=int, default=8)
     ef.add_argument("--batch", type=int, default=8)

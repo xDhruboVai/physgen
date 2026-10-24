@@ -17,3 +17,4 @@ dataset_root/
 *.npz
 *.npy
 *.mp4
+datasets/

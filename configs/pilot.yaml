@@ -8,7 +8,7 @@ scenarios:
   billiards: 1.0
   stack: 0.0
   dominoes: 0.0
-  projectile_bin: 0.0
+  projectile_bin: 1.0       # held out (splits.heldout_scenarios): appears only in test_ood_scenario
 camera:
   moving_fraction: 0.0
 assets:
