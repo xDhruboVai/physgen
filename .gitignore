@@ -18,3 +18,5 @@ dataset_root/
 *.npy
 *.mp4
 datasets/
+*.pt
+results/*/predictions-*.parquet

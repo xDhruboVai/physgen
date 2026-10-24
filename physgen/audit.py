@@ -1,5 +1,6 @@
 """Dataset-level validation (V5, V8, V9, V10 on the written shards) and the shortcut audit (doc 9.2-9.3)."""
 import glob
+import hashlib
 import json
 import os
 
@@ -39,8 +40,10 @@ def validate(root):
         except AssertionError as e:
             errors.append(f"{meta['clip_id']}: {e}")
         images = sorted(k for k in sample if k.endswith((".jpg", ".png")))
-        # per-frame images are compared as encoded bytes (identical frames encode identically)
-        frames[meta["clip_id"]] = [sample[k] for k in images] if images else list(writer.decode(sample))
+        # keep one digest per frame, not the frames (a pilot's frames do not fit in RAM); identical frames
+        # encode to identical bytes, so equal digests before the onset is the V5 check on stored data
+        raw = [sample[k] for k in images] if images else [f.tobytes() for f in writer.decode(sample)]
+        frames[meta["clip_id"]] = [hashlib.md5(b).digest() for b in raw]
         n = len(frames[meta["clip_id"]])
         if n != meta["num_frames"]:
             errors.append(f"{meta['clip_id']}: {n} frames, expected {meta['num_frames']}")
@@ -53,7 +56,7 @@ def validate(root):
             errors.append(f"{p['pair_id']}: missing clip")
             continue
         on = int(p["onset_frame"])
-        same = all(x == y if isinstance(x, bytes) else np.array_equal(x, y) for x, y in zip(a[:on], b[:on]))
+        same = a[:on] == b[:on]
         if not same:
             errors.append(f"{p['pair_id']}: frames differ before onset {on} (V5)")
     # V9: near-duplicate scenes

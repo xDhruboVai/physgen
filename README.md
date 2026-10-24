@@ -118,6 +118,27 @@ Measured with `tests/benchmark.py` and the generation logs:
 
 So the M1 pilot (~5k pairs) takes about an hour on this PC, and ~26 GB per 5k scenes.
 
+## Baseline (doc section 10)
+
+Frozen VideoMAE V2 encoder + trainable temporal head (`baseline/`). Features are exported once per
+backbone; the head sees one feature per 2 frames (tubelet) over the whole clip, averaged across the
+overlapping 16-frame windows (stride 8), and predicts {normal, c1, c2, c3} per time step.
+
+```bash
+.venv/Scripts/python -m physgen export-features --root datasets/pilot          # VideoMAE V2-Base, w16 s8
+.venv/Scripts/python -m baseline train --root datasets/pilot --out results/head [--pairwise]
+.venv/Scripts/python -m baseline evaluate --root datasets/pilot --run results/head
+```
+
+`evaluate` reports, per split: clip AUROC and accuracy, pairwise ranking accuracy (violating clip
+scored above its c0 partner), 4-class macro F1, onset/offset error in frames, mean temporal IoU and
+segment F1 at IoU 0.3/0.5/0.7, plus breakdowns by class, subtype, severity, scenario, timing and
+camera mode. Thresholds are tuned on val. VideoMAE V2 weights (CC BY-NC 4.0) are loaded into the
+built-in transformers VideoMAE model without running repository code (`tests/test_videomaev2.py`
+checks the mapping against an independent reference). Fine-tuning the encoder does not fit on a 4 GB GPU.
+
+The real / AI-generated test set needs data collected by hand; see `docs/real_test_protocol.md`.
+
 ## Known limits and open items
 
 - Physics backends: only PyBullet is implemented; the operations c2 needs are isolated in
