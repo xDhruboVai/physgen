@@ -1,0 +1,8 @@
+# M2-M4 (doc section 12): all scenarios and subtypes, YCB meshes, 20% slow pans/orbits, ~20k pairs.
+dataset:
+  num_scenes: 6500
+camera:
+  moving_fraction: 0.2
+assets:
+  meshes: [primitives, ycb]   # run `python -m physgen fetch-assets --ycb 35` first
+  mesh_fraction: 0.4

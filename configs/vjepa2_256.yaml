@@ -1,0 +1,5 @@
+# Example of a backbone change: V-JEPA 2 checkpoints take 256x256 input.
+# Frames are stored as images at this resolution; windows/stride are chosen at feature export or training time:
+#   python -m physgen export-features --root <out> --model facebook/vjepa2-vitl-fpc64-256 --window 64 --stride 64
+dataset:
+  clip: {frames: 64, fps: 24, resolution: 256}

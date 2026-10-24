@@ -1,0 +1,19 @@
+# environments and downloaded tools (recreate: see README)
+.venv/
+third_party/
+__pycache__/
+*.pyc
+
+# downloaded / generated assets; assets/manifest.json is committed so `fetch-assets` restores the same files
+assets/*
+!assets/manifest.json
+
+# generated data
+runs/
+previews/
+dataset_root/
+*.tar
+*.tar.part
+*.npz
+*.npy
+*.mp4

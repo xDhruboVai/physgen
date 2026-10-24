@@ -1,0 +1,71 @@
+# Defaults for every option; a user config only overrides what it changes.
+# Each decision from the design doc (D1-D11) is a switch here.
+dataset:
+  version: 0.1.0
+  num_scenes: 5000
+  clip: {frames: 64, fps: 24, resolution: 224}   # D4: e.g. {frames: 16} or {resolution: 256} for another backbone
+  pairs: compatible_all                          # D3: compatible_all | one_random
+scenarios:                                       # sampling weights (0 disables); doc 6.4
+  free_fall: 1.0
+  ramp_slide: 1.0
+  rolling: 1.0
+  billiards: 1.0
+  stack: 1.0
+  dominoes: 1.0
+  projectile_bin: 1.0
+renderer:                                        # D1: raster (GPU, moderngl) | blender
+  backend: raster
+  motion_blur_samples: 4                         # D11: baked motion blur (1 = off)
+  shutter: 0.5                                   # fraction of the frame interval
+  msaa: 4
+  shadow_map: 2048
+  exposure_ev: [-0.5, 0.5]                       # D11: baked exposure jitter
+  blender:
+    executable: third_party/blender-4.2.23-windows-x64/blender.exe
+    engine: CYCLES                               # CYCLES | BLENDER_EEVEE_NEXT
+    device: OPTIX                                # OPTIX | CUDA | CPU
+    samples: 32
+    denoise: true
+physics:                                         # D2
+  engine: pybullet
+  hz: 240
+  internal_substeps: 4                           # solver steps per 240 Hz step; 1 gives up to 25 mm impact penetration
+  gravity: -9.81
+  solver_iterations: 50
+violations:
+  classes: [1, 2, 3]
+  timing: {persistent: 0.5, transient: 0.5}      # D5
+  severity: {subtle: 0.3, clear: 0.4, strong: 0.3}  # D8
+  onset_range: [0.2, 0.75]                       # fraction of the clip
+  subtypes: {}                                   # optional weight per subtype id, e.g. {S2.6: 0}
+  max_attempts: 6
+camera:                                          # D9
+  moving_fraction: 0.0                           # pilot: static only; doc suggests 0.2 later
+  fov_deg: [35, 55]
+  pitch_deg: [15, 45]                            # degrees below horizontal
+  fill: [0.6, 0.85]                              # fraction of the frame the action spans
+light:
+  elevation_deg: [25, 75]
+  color_temp_k: [3500, 7500]
+  softness: [0.0, 1.0]
+  ambient: [0.15, 0.45]                          # ambient / key irradiance
+clutter:
+  static_distractors: [0, 5]
+assets:                                          # D7
+  root: assets
+  meshes: [primitives]                           # add ycb once fetched
+  mesh_fraction: 0.4
+splits:                                          # doc 5.6
+  heldout_shapes: [capsule]
+  heldout_scenarios: [projectile_bin]
+  heldout_subtypes: [S1.5, S2.7, S3.3]
+output:                                          # D6
+  format: jpeg                                   # jpeg | png | npy | mp4
+  jpeg_quality: 95
+  shard_max_clips: 256
+validation:
+  visibility_threshold: {subtle: 0.002, clear: 0.004, strong: 0.008}  # V6: fraction of changed pixels
+  min_motion_m: 0.05                             # V4
+  full_render_check_fraction: 0.02               # V5: re-render some violating clips fully
+runtime:
+  workers: 6

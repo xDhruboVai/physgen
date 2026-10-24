@@ -1,0 +1,15 @@
+# M1 pilot (doc section 12): static camera, procedural primitives, three scenarios, ~5k pairs.
+dataset:
+  num_scenes: 1900          # ~2.7 pairs per scene with these scenarios
+scenarios:
+  free_fall: 1.0
+  ramp_slide: 1.0
+  rolling: 0.0
+  billiards: 1.0
+  stack: 0.0
+  dominoes: 0.0
+  projectile_bin: 0.0
+camera:
+  moving_fraction: 0.0
+assets:
+  meshes: [primitives]

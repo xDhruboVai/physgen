@@ -1,0 +1,10 @@
+# Renderer-transfer subset (D1 = D): re-render test_id scenes with Blender.
+#   python -m physgen generate --config configs/blender_eval.yaml --split test_renderer --num-scenes 200 --workers 1
+# Use the same other settings as the test_id run so the scenes match (replay checks this).
+renderer:
+  backend: blender
+  blender:
+    engine: CYCLES          # BLENDER_EEVEE_NEXT is faster; its c1 shadow decoupling is approximate
+    device: OPTIX           # OPTIX | CUDA | CPU
+    samples: 32
+    denoise: true
