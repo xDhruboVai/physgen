@@ -11,6 +11,7 @@ one .npz per shard: <clip_id> -> (n_windows, slots_per_window, dim) float16, plu
 """
 import json
 import os
+import zipfile
 
 import numpy as np
 import pandas as pd
@@ -149,22 +150,41 @@ def export(root, model_id=DEFAULT_MODEL, window=16, stride=8, batch=8, device="c
     slug = f"{model_id.replace('/', '__')}-w{window}-s{stride}"
     out_dir = os.path.join(root, "features", slug)
     os.makedirs(out_dir, exist_ok=True)
-    index, feats, shard = [], {}, None
+    feats, shard = {}, None
+    npz = lambda s: os.path.basename(s).replace(".tar", ".npz")
+    starts_of = lambda T: list(range(0, max(T - window, 0) + 1, stride))
+    entry = lambda cid, s, T, cls, split: dict(clip_id=cid, file=npz(s), window=window, stride=stride,
+                                               window_starts=starts_of(T), **{"class": int(cls)}, split=split)
+
+    def complete(s):  # resume: a shard whose feature file already holds all its clips is skipped
+        try:
+            with np.load(os.path.join(out_dir, npz(s))) as z:
+                return set(clips.loc[clips["shard"] == s, "clip_id"]) <= set(z.files)
+        except (OSError, ValueError, zipfile.BadZipFile):
+            return False
+
+    done = {s for s in clips["shard"].unique() if complete(s)}
+    if done:
+        print(f"resuming: {len(done)} shards already exported")
+    index = [entry(r.clip_id, r.shard, r.num_frames, r["class"], r.split)
+             for _, r in clips[clips["shard"].isin(done)].iterrows()]
 
     def flush():
         if shard is not None and feats:
-            np.savez(os.path.join(out_dir, os.path.basename(shard).replace(".tar", ".npz")), **feats)
+            path = os.path.join(out_dir, npz(shard))
+            with open(path + ".part", "wb") as f:  # atomic: an interrupted write never looks complete
+                np.savez(f, **feats)
+            os.replace(path + ".part", path)
             feats.clear()
 
     c0_feats = {}  # windows that end before the onset are identical to c0's (pre-onset frames are identical)
     with torch.no_grad():
-        for row, sample in iter_clips(root, clips):
+        for row, sample in iter_clips(root, clips[~clips["shard"].isin(done)]):
             if row["shard"] != shard:
                 flush()
                 shard = row["shard"]
             frames = writer.decode(sample)
-            T = len(frames)
-            starts = list(range(0, max(T - window, 0) + 1, stride))
+            starts = starts_of(len(frames))
             ref = None
             if row["class"] > 0 and isinstance(row["pair_id"], str):
                 ref = c0_feats.get(row["pair_id"][:row["pair_id"].rfind("_c")])
@@ -184,9 +204,7 @@ def export(root, model_id=DEFAULT_MODEL, window=16, stride=8, batch=8, device="c
             feats[row.name] = np.stack([res[k] for k in range(len(starts))]).astype(np.float16)
             if row["class"] == 0:
                 c0_feats = {row.name: feats[row.name]}  # clips of a scene are stored together, c0 first
-            lab = np.asarray(row["frame_labels"])
-            index.append(dict(clip_id=row.name, file=os.path.basename(shard).replace(".tar", ".npz"), window=window,
-                              stride=stride, window_starts=starts, **{"class": int(row["class"])}, split=row["split"]))
+            index.append(entry(row.name, shard, len(frames), row["class"], row["split"]))
     flush()
     pd.DataFrame(index).to_parquet(os.path.join(out_dir, "index.parquet"))
     with open(os.path.join(out_dir, "info.json"), "w") as f:
