@@ -121,11 +121,16 @@ So the M1 pilot (~5k pairs) takes about an hour on this PC, and ~26 GB per 5k sc
 ## Baseline (doc section 10)
 
 Frozen VideoMAE V2 encoder + trainable temporal head (`baseline/`). Features are exported once per
-backbone; the head sees one feature per 2 frames (tubelet) over the whole clip, averaged across the
-overlapping 16-frame windows (stride 8), and predicts {normal, c1, c2, c3} per time step.
+backbone; the head sees one feature per 2 frames (tubelet) over the whole clip, assembled from the
+16-frame windows, and predicts {normal, c1, c2, c3} per time step.
+
+The pilot export uses stride 16 (non-overlapping windows) instead of the doc's stride 8: on the
+GTX 1050 Ti the encoder runs at ~3.8 windows/s, and the per-2-frame timeline keeps the same temporal
+resolution either way. Windows that end before a violating clip's onset are copied from its c0
+clip (identical frames, identical features). Use `--stride 8` on a faster GPU.
 
 ```bash
-.venv/Scripts/python -m physgen export-features --root datasets/pilot          # VideoMAE V2-Base, w16 s8
+.venv/Scripts/python -m physgen export-features --root datasets/pilot --stride 16   # VideoMAE V2-Base
 .venv/Scripts/python -m baseline train --root datasets/pilot --out results/head [--pairwise]
 .venv/Scripts/python -m baseline evaluate --root datasets/pilot --run results/head
 ```

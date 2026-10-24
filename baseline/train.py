@@ -14,7 +14,7 @@ import torch.nn.functional as F
 from . import data, metrics
 from .model import TemporalHead, clip_scores
 
-FEATURES = "OpenGVLab__VideoMAEv2-Base-w16-s8"
+FEATURES = "OpenGVLab__VideoMAEv2-Base-w16-s16"
 
 
 def _batches(meta, rng, scenes_per_batch):

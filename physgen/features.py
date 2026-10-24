@@ -20,11 +20,15 @@ from .audit import _load, iter_clips
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_MODEL = "OpenGVLab/VideoMAEv2-Base"
+# model downloads go to the project drive, not the user profile on C:. Set at import: huggingface_hub
+# fixes its cache path when it is first imported.
+os.environ.setdefault("HF_HOME", os.path.join(ROOT, "third_party", "hf-cache"))
 
 
 def _hf_home():
-    # model downloads go to the project drive, not the user profile on C:
-    os.environ.setdefault("HF_HOME", os.path.join(ROOT, "third_party", "hf-cache"))
+    import huggingface_hub.constants as c
+    if not os.path.abspath(c.HF_HUB_CACHE).startswith(os.path.abspath(os.environ["HF_HOME"])):
+        raise RuntimeError(f"huggingface_hub was imported before physgen.features; cache would be {c.HF_HUB_CACHE}")
 
 
 def load_videomaev2(model_id):
@@ -33,7 +37,7 @@ def load_videomaev2(model_id):
     import torch
     from huggingface_hub import hf_hub_download
     from safetensors.torch import load_file
-    from transformers import VideoMAEConfig, VideoMAEImageProcessor, VideoMAEModel
+    from transformers import VideoMAEConfig, VideoMAEModel
     _hf_home()
     with open(hf_hub_download(model_id, "config.json")) as f:
         mc = json.load(f)["model_config"]
@@ -75,10 +79,31 @@ def load_videomaev2(model_id):
         raise RuntimeError(f"VideoMAE V2 weight mapping incomplete: missing {missing[:5]}, unexpected {unexpected[:5]}")
     fc_norm = torch.nn.LayerNorm(D, eps=mc["layer_norm_eps"])
     fc_norm.load_state_dict({"weight": src["fc_norm.weight"], "bias": src["fc_norm.bias"]})
-    proc = VideoMAEImageProcessor(do_resize=True, size={"shortest_edge": pc["size"]}, do_center_crop=True,
-                                  crop_size={"height": pc["size"], "width": pc["size"]},
-                                  image_mean=pc["image_mean"], image_std=pc["image_std"])
-    return model, fc_norm, proc, mc["tubelet_size"]
+    return model, fc_norm, TensorVideoProcessor(pc["size"], pc["image_mean"], pc["image_std"]), mc["tubelet_size"]
+
+
+class TensorVideoProcessor:
+    """Same steps as VideoMAEImageProcessor (shortest-edge resize, centre crop, normalise) on tensors;
+    the PIL path costs more than the encoder on small frames."""
+
+    def __init__(self, size, mean, std):
+        import torch
+        self.size = size
+        self.mean, self.std = torch.tensor(mean).view(1, 1, 3, 1, 1), torch.tensor(std).view(1, 1, 3, 1, 1)
+
+    def __call__(self, vids, return_tensors="pt"):
+        import torch
+        import torch.nn.functional as F
+        x = torch.as_tensor(np.stack([np.stack(v) for v in vids])).permute(0, 1, 4, 2, 3).float() / 255  # B,T,C,H,W
+        B, T, C, H, W = x.shape
+        if min(H, W) != self.size:
+            s = self.size / min(H, W)
+            x = F.interpolate(x.reshape(B * T, C, H, W), size=(round(H * s), round(W * s)), mode="bilinear",
+                              antialias=True, align_corners=False).reshape(B, T, C, round(H * s), round(W * s))
+            H, W = x.shape[-2:]
+        top, left = (H - self.size) // 2, (W - self.size) // 2
+        x = x[..., top:top + self.size, left:left + self.size]
+        return {"pixel_values": (x - self.mean) / self.std}
 
 
 def load_backbone(model_id):
@@ -131,6 +156,7 @@ def export(root, model_id=DEFAULT_MODEL, window=16, stride=8, batch=8, device="c
             np.savez(os.path.join(out_dir, os.path.basename(shard).replace(".tar", ".npz")), **feats)
             feats.clear()
 
+    c0_feats = {}  # windows that end before the onset are identical to c0's (pre-onset frames are identical)
     with torch.no_grad():
         for row, sample in iter_clips(root, clips):
             if row["shard"] != shard:
@@ -139,18 +165,25 @@ def export(root, model_id=DEFAULT_MODEL, window=16, stride=8, batch=8, device="c
             frames = writer.decode(sample)
             T = len(frames)
             starts = list(range(0, max(T - window, 0) + 1, stride))
-            out = []
-            for b in range(0, len(starts), batch):
-                vids = [list(frames[s:s + window]) for s in starts[b:b + batch]]
-                inputs = proc(vids, return_tensors="pt")  # first positional argument is the batch of videos
+            ref = None
+            if row["class"] > 0 and isinstance(row["pair_id"], str):
+                ref = c0_feats.get(row["pair_id"][:row["pair_id"].rfind("_c")])
+            reuse = [k for k, s in enumerate(starts) if ref is not None and s + window <= int(row["onset_frame"])]
+            todo = [k for k in range(len(starts)) if k not in reuse]
+            res = {k: ref[k] for k in reuse}
+            for b in range(0, len(todo), batch):
+                ks = todo[b:b + batch]
+                inputs = proc([list(frames[starts[k]:starts[k] + window]) for k in ks], return_tensors="pt")
                 inputs = {k: (v.to(device).half() if v.is_floating_point() and half else v.to(device)) for k, v in inputs.items()}
                 o = model(**inputs)
                 h = o.last_hidden_state if hasattr(o, "last_hidden_state") else o[0]
                 x = temporal_tokens(h, slots) if h.dim() == 3 else h[:, None]
                 if post is not None:
                     x = post(x)
-                out.append(x.float().cpu().numpy())
-            feats[row.name] = np.concatenate(out).astype(np.float16)
+                res.update(zip(ks, x.float().cpu().numpy()))
+            feats[row.name] = np.stack([res[k] for k in range(len(starts))]).astype(np.float16)
+            if row["class"] == 0:
+                c0_feats = {row.name: feats[row.name]}  # clips of a scene are stored together, c0 first
             lab = np.asarray(row["frame_labels"])
             index.append(dict(clip_id=row.name, file=os.path.basename(shard).replace(".tar", ".npz"), window=window,
                               stride=stride, window_starts=starts, **{"class": int(row["class"])}, split=row["split"]))
