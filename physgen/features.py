@@ -137,6 +137,44 @@ def temporal_tokens(hidden, slots):
     return hidden.mean(1, keepdim=True)
 
 
+def _scenes(clip_iter):
+    """Group consecutive (row, sample) pairs by scene and decode them; clips of a scene share a shard."""
+    group, key = [], None
+    for row, sample in clip_iter:
+        k = (row["shard"], row["scene_seed"])
+        if group and k != key:
+            yield group
+            group = []
+        key = k
+        group.append((row, writer.decode(sample)))
+    if group:
+        yield group
+
+
+def _prefetch(it, depth=4):
+    """Run an iterator on a background thread so JPEG decoding overlaps with GPU work."""
+    import queue
+    import threading
+    q, end = queue.Queue(depth), object()
+
+    def run():
+        try:
+            for x in it:
+                q.put(x)
+            q.put(end)
+        except BaseException as e:  # surface producer errors in the consumer
+            q.put(e)
+
+    threading.Thread(target=run, daemon=True).start()
+    while True:
+        x = q.get()
+        if x is end:
+            return
+        if isinstance(x, BaseException):
+            raise x
+        yield x
+
+
 def export(root, model_id=DEFAULT_MODEL, window=16, stride=8, batch=8, device="cuda"):
     import torch
     clips, _ = _load(root)
@@ -177,34 +215,39 @@ def export(root, model_id=DEFAULT_MODEL, window=16, stride=8, batch=8, device="c
             os.replace(path + ".part", path)
             feats.clear()
 
-    c0_feats = {}  # windows that end before the onset are identical to c0's (pre-onset frames are identical)
+    def encode(windows):
+        inputs = proc(windows, return_tensors="pt")
+        inputs = {k: (v.to(device).half() if v.is_floating_point() and half else v.to(device)) for k, v in inputs.items()}
+        o = model(**inputs)
+        h = o.last_hidden_state if hasattr(o, "last_hidden_state") else o[0]
+        x = temporal_tokens(h, slots) if h.dim() == 3 else h[:, None]
+        return (post(x) if post is not None else x).float().cpu().numpy()
+
     with torch.no_grad():
-        for row, sample in iter_clips(root, clips[~clips["shard"].isin(done)]):
-            if row["shard"] != shard:
+        for group in _prefetch(_scenes(iter_clips(root, clips[~clips["shard"].isin(done)]))):
+            if group[0][0]["shard"] != shard:
                 flush()
-                shard = row["shard"]
-            frames = writer.decode(sample)
-            starts = starts_of(len(frames))
-            ref = None
-            if row["class"] > 0 and isinstance(row["pair_id"], str):
-                ref = c0_feats.get(row["pair_id"][:row["pair_id"].rfind("_c")])
-            reuse = [k for k, s in enumerate(starts) if ref is not None and s + window <= int(row["onset_frame"])]
-            todo = [k for k in range(len(starts)) if k not in reuse]
-            res = {k: ref[k] for k in reuse}
-            for b in range(0, len(todo), batch):
-                ks = todo[b:b + batch]
-                inputs = proc([list(frames[starts[k]:starts[k] + window]) for k in ks], return_tensors="pt")
-                inputs = {k: (v.to(device).half() if v.is_floating_point() and half else v.to(device)) for k, v in inputs.items()}
-                o = model(**inputs)
-                h = o.last_hidden_state if hasattr(o, "last_hidden_state") else o[0]
-                x = temporal_tokens(h, slots) if h.dim() == 3 else h[:, None]
-                if post is not None:
-                    x = post(x)
-                res.update(zip(ks, x.float().cpu().numpy()))
-            feats[row.name] = np.stack([res[k] for k in range(len(starts))]).astype(np.float16)
-            if row["class"] == 0:
-                c0_feats = {row.name: feats[row.name]}  # clips of a scene are stored together, c0 first
-            index.append(entry(row.name, shard, len(frames), row["class"], row["split"]))
+                shard = group[0][0]["shard"]
+            # one batch stream per scene; windows ending before a violating clip's onset are copied from
+            # the scene's c0 clip (pre-onset frames are identical)
+            c0 = next((g for g, (row, _) in enumerate(group) if row["class"] == 0), None)
+            src, jobs = {}, []
+            for g, (row, frames) in enumerate(group):
+                for k, s in enumerate(starts_of(len(frames))):
+                    if c0 is not None and g != c0 and s + window <= int(row["onset_frame"]):
+                        src[g, k] = (c0, k)
+                    else:
+                        src[g, k] = (g, k)
+                        jobs.append((g, k, s))
+            res = {}
+            for b in range(0, len(jobs), batch):
+                part = jobs[b:b + batch]
+                res.update(zip([(g, k) for g, k, _ in part],
+                               encode([list(group[g][1][s:s + window]) for g, _, s in part])))
+            for g, (row, frames) in enumerate(group):
+                n = len(starts_of(len(frames)))
+                feats[row.name] = np.stack([res[src[g, k]] for k in range(n)]).astype(np.float16)
+                index.append(entry(row.name, shard, len(frames), row["class"], row["split"]))
     flush()
     pd.DataFrame(index).to_parquet(os.path.join(out_dir, "index.parquet"))
     with open(os.path.join(out_dir, "info.json"), "w") as f:
