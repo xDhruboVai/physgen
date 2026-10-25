@@ -21,7 +21,7 @@ practical. Durations are my estimates and assume the work runs largely unattende
 |---|---|---|
 | 1 | Set up the new machine, regenerate the pilot from the same seeds, benchmark; features at the doc's stride of 8; three seeds per baseline | pilot results with error bars |
 | 2 | Fine-tune the encoder end to end (frozen vs fine-tuned ablation) | answer to whether the frozen encoder is the bottleneck |
-| 3 | Balance the subtypes; generate M2/M3: all 7 scenarios, 40% YCB objects, 20% moving cameras, ~20k training pairs, 200 Blender scenes | M2 dataset, validated |
+| 3 | Balance the subtypes and add hard compliant cases (both from the shortcut audit); generate M2/M3: all 7 scenarios, 40% YCB objects, 20% moving cameras, ~20k training pairs, 200 Blender scenes | M2 dataset, validated |
 | 4 | Shortcut audit with stronger probes; baselines and ablations on M2 | M2 results table |
 | 5 to 6 | Collect and annotate the real / AI-generated test set (two annotators, protocol already drafted) | test_real split and agreement statistics |
 | 7 | Final evaluation table, dataset card, documentation | M4 and M5 complete |

@@ -47,8 +47,9 @@ Full tables: `pilot_head/metrics.md` (cross-entropy only) and `pilot_head_pairwi
 - OOD drops are largest for unseen objects and zero-shot subtypes. On the same 30 scenes rendered both
   ways there is no clear renderer gap (independent head AUROC 0.63 raster vs 0.67 Cycles; pairwise 0.70
   vs 0.68), but with 84 pairs the uncertainty is about plus or minus 0.1.
-- Shortcut probes stay at chance for c0-vs-violating (`docs/pilot/probes.csv`); the 4-class motion
-  probe (0.35 vs 0.25) reflects that c3 exists only in billiards and ramp scenes.
+- Shortcut probes stay at chance for c0-vs-violating (`docs/pilot/probes.csv`). The 4-class motion
+  probe (0.35 vs 0.25) stays above chance even within one scenario: violations add image change after the
+  onset, which a crude statistic can pick up. See `docs/supervisor/03_shortcut_audit.md`.
 
 ## Reproduce
 

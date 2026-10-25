@@ -114,6 +114,8 @@ faint to see; those were redrawn. The shortcut audit is written up separately (`
   balancing fix is planned before M2.
 - c3 only exists in billiards and ramp scenes, so in a 4-class setting the scenario says something
   about whether c3 is possible.
+- Violations add a little extra image change after the onset, which crude motion statistics can pick
+  up on the four-class question (see the shortcut audit). The compliant-vs-violating question is not affected.
 - Mass inconsistency (S2.6) is hard to see in principle when no earlier collision reveals the masses.
 - In c3 the cause object still reacts at the true contact time, as the design document warns.
 - All clips are synthetic and rendered with a fairly simple rasterizer; the 30-scene Blender subset is

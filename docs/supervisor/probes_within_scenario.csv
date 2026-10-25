@@ -1,0 +1,10 @@
+scenario,probe,clips,classes,binary,multiclass,chance_multiclass
+billiards,P3,1503,4,0.499,0.312,0.25
+billiards,P6,1503,4,0.5,0.288,0.25
+billiards,P1,1503,4,0.502,0.27,0.25
+ramp_slide,P3,1497,4,0.523,0.378,0.25
+ramp_slide,P6,1497,4,0.5,0.277,0.25
+ramp_slide,P1,1497,4,0.5,0.26,0.25
+free_fall,P3,1505,3,0.51,0.43,0.333
+free_fall,P6,1505,3,0.499,0.517,0.333
+free_fall,P1,1505,3,0.506,0.361,0.333

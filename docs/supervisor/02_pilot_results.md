@@ -85,9 +85,9 @@ uncertainty on these numbers is around plus or minus 0.1. The M2 plan has 200 Bl
 ## What I take from this
 
 1. The task is learnable from the data but far from solved with a frozen encoder. The model fits the
-   training set well (train AUROC 0.92 to 0.98) while validation stalls around 0.72 to 0.74, so the
-   frozen features are the limit, not the amount of data. Fine-tuning the encoder is the obvious next
-   experiment; it did not fit on the 4 GB card.
+   training set well (train AUROC 0.92 to 0.98) while validation stalls around 0.72 to 0.74 after about
+   30 epochs. That gap could come from the frozen features or from too little data; fine-tuning the
+   encoder (which did not fit on the 4 GB card) and the larger M2 dataset will tell the two apart.
 2. The severity levels behave as intended: performance drops steadily from strong to subtle. That is
    useful for the thesis because it gives a difficulty curve rather than one number.
 3. The pairwise loss is a real trade-off. It helps detection (+5 AUROC and +9 points of ranking on
