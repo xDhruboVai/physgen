@@ -7,6 +7,24 @@ and offset labels.
 
 All tools, assets and Python packages live on E: (`.venv`, `third_party/`, `assets/`).
 
+## Setup on a new machine
+
+```bash
+git clone https://github.com/xDhruboVai/physgen.git && cd physgen
+python3.11 -m venv .venv            # Windows: py -3.11 -m venv .venv
+.venv/Scripts/python -m pip install torch --index-url https://download.pytorch.org/whl/cu128   # RTX 20xx-50xx
+.venv/Scripts/python -m pip install -r requirements.txt
+.venv/Scripts/python -m physgen fetch-assets          # restores exactly the assets in assets/manifest.json
+```
+
+- pybullet: on Linux `pip install pybullet`. On Windows there are no wheels and building needs MSVC;
+  instead extract `pybullet-3.25-py311*.conda` from conda-forge (win-64) and copy its
+  `Lib/site-packages/*` into `.venv/Lib/site-packages`, plus `zlib.dll` from conda-forge `libzlib`
+  (or install MSVC Build Tools and `pip install pybullet`).
+- Blender 4.2 LTS (only for the Blender backend): unpack the portable build to
+  `third_party/blender-4.2.23-windows-x64/` or set `renderer.blender.executable`.
+- GTX 10xx (Pascal) GPUs need a cu126 torch build (`torch==2.7.1`, index `.../whl/cu126`).
+
 ## Quick start
 
 ```bash

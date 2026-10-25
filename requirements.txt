@@ -1,0 +1,18 @@
+# Python 3.11. Install torch first from the PyTorch index matching your GPU (see README "Setup"),
+# and pybullet as described there (no Windows pip wheels).
+numpy>=2.0
+scipy>=1.13
+pandas>=2.2
+pyarrow>=16
+pillow>=10
+PyYAML>=6
+moderngl>=5.10
+opencv-python-headless>=4.9
+imageio>=2.34
+imageio-ffmpeg>=0.5
+trimesh>=4
+scikit-learn>=1.4
+tabulate>=0.9
+transformers>=4.53
+safetensors>=0.4
+zstandard>=0.22
