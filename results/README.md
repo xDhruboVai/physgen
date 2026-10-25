@@ -44,8 +44,9 @@ Full tables: `pilot_head/metrics.md` (cross-entropy only) and `pilot_head_pairwi
   doc anticipated: masses are rarely observable before the collision).
 - The pairwise loss helps detection and classification (+5 AUROC, +9 ranking) but blurs temporal
   boundaries (-9 points segment F1@0.5): a trade-off worth reporting in the ablation.
-- OOD drops are largest for unseen objects and zero-shot subtypes; the renderer gap (raster to
-  Cycles) costs about 3 AUROC points.
+- OOD drops are largest for unseen objects and zero-shot subtypes. On the same 30 scenes rendered both
+  ways there is no clear renderer gap (independent head AUROC 0.63 raster vs 0.67 Cycles; pairwise 0.70
+  vs 0.68), but with 84 pairs the uncertainty is about plus or minus 0.1.
 - Shortcut probes stay at chance for c0-vs-violating (`docs/pilot/probes.csv`); the 4-class motion
   probe (0.35 vs 0.25) reflects that c3 exists only in billiards and ramp scenes.
 

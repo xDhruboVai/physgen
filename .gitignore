@@ -20,3 +20,4 @@ dataset_root/
 datasets/
 *.pt
 results/*/predictions-*.parquet
+deliverables/
