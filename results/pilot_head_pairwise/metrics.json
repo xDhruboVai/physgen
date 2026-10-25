@@ -1,0 +1,1810 @@
+{
+ "val": {
+  "summary": {
+   "clips": 717,
+   "violating": 517,
+   "auroc": 0.7351547388781431,
+   "accuracy": 0.6624825662482566,
+   "pairwise_ranking_acc": 0.8201160541586073,
+   "macro_f1_4class": 0.5693572231134629,
+   "mean_tiou": 0.33347887616357463,
+   "localised_fraction": 0.7601547388781431,
+   "onset_mae_frames": 8.544529262086513,
+   "offset_mae_frames": 10.335877862595419,
+   "segment_f1@0.3": 0.41797752808988764,
+   "segment_f1@0.5": 0.27191011235955054,
+   "segment_f1@0.7": 0.14382022471910114
+  },
+  "breakdown": {
+   "class": [
+    {
+     "class": 1,
+     "n": 196,
+     "ranking_acc": 0.857,
+     "detected": 0.673,
+     "class_acc": 0.561,
+     "mean_tiou": 0.438
+    },
+    {
+     "class": 2,
+     "n": 193,
+     "ranking_acc": 0.751,
+     "detected": 0.549,
+     "class_acc": 0.378,
+     "mean_tiou": 0.208
+    },
+    {
+     "class": 3,
+     "n": 128,
+     "ranking_acc": 0.867,
+     "detected": 0.672,
+     "class_acc": 0.57,
+     "mean_tiou": 0.361
+    }
+   ],
+   "subtype": [
+    {
+     "subtype": "S1.1",
+     "n": 56,
+     "ranking_acc": 0.946,
+     "detected": 0.911,
+     "class_acc": 0.839,
+     "mean_tiou": 0.525
+    },
+    {
+     "subtype": "S1.2",
+     "n": 40,
+     "ranking_acc": 0.775,
+     "detected": 0.7,
+     "class_acc": 0.475,
+     "mean_tiou": 0.491
+    },
+    {
+     "subtype": "S1.3",
+     "n": 35,
+     "ranking_acc": 0.8,
+     "detected": 0.229,
+     "class_acc": 0.143,
+     "mean_tiou": 0.186
+    },
+    {
+     "subtype": "S1.4",
+     "n": 46,
+     "ranking_acc": 0.891,
+     "detected": 0.804,
+     "class_acc": 0.761,
+     "mean_tiou": 0.538
+    },
+    {
+     "subtype": "S1.6",
+     "n": 19,
+     "ranking_acc": 0.789,
+     "detected": 0.421,
+     "class_acc": 0.211,
+     "mean_tiou": 0.295
+    },
+    {
+     "subtype": "S2.1",
+     "n": 25,
+     "ranking_acc": 0.52,
+     "detected": 0.48,
+     "class_acc": 0.28,
+     "mean_tiou": 0.158
+    },
+    {
+     "subtype": "S2.2",
+     "n": 60,
+     "ranking_acc": 0.867,
+     "detected": 0.6,
+     "class_acc": 0.367,
+     "mean_tiou": 0.064
+    },
+    {
+     "subtype": "S2.3",
+     "n": 47,
+     "ranking_acc": 0.766,
+     "detected": 0.574,
+     "class_acc": 0.511,
+     "mean_tiou": 0.372
+    },
+    {
+     "subtype": "S2.4",
+     "n": 12,
+     "ranking_acc": 0.583,
+     "detected": 0.417,
+     "class_acc": 0.25,
+     "mean_tiou": 0.187
+    },
+    {
+     "subtype": "S2.5",
+     "n": 12,
+     "ranking_acc": 0.917,
+     "detected": 0.75,
+     "class_acc": 0.667,
+     "mean_tiou": 0.447
+    },
+    {
+     "subtype": "S2.6",
+     "n": 16,
+     "ranking_acc": 0.812,
+     "detected": 0.312,
+     "class_acc": 0.188,
+     "mean_tiou": 0.046
+    },
+    {
+     "subtype": "S2.8",
+     "n": 21,
+     "ranking_acc": 0.619,
+     "detected": 0.571,
+     "class_acc": 0.286,
+     "mean_tiou": 0.315
+    },
+    {
+     "subtype": "S3.1",
+     "n": 69,
+     "ranking_acc": 0.913,
+     "detected": 0.725,
+     "class_acc": 0.623,
+     "mean_tiou": 0.323
+    },
+    {
+     "subtype": "S3.4",
+     "n": 59,
+     "ranking_acc": 0.814,
+     "detected": 0.61,
+     "class_acc": 0.508,
+     "mean_tiou": 0.405
+    }
+   ],
+   "severity": [
+    {
+     "severity": "clear",
+     "n": 177,
+     "ranking_acc": 0.802,
+     "detected": 0.599,
+     "class_acc": 0.463,
+     "mean_tiou": 0.335
+    },
+    {
+     "severity": "strong",
+     "n": 154,
+     "ranking_acc": 0.909,
+     "detected": 0.747,
+     "class_acc": 0.617,
+     "mean_tiou": 0.4
+    },
+    {
+     "severity": "subtle",
+     "n": 186,
+     "ranking_acc": 0.763,
+     "detected": 0.554,
+     "class_acc": 0.425,
+     "mean_tiou": 0.276
+    }
+   ],
+   "scenario": [
+    {
+     "scenario": "billiards",
+     "n": 210,
+     "ranking_acc": 0.857,
+     "detected": 0.6,
+     "class_acc": 0.462,
+     "mean_tiou": 0.302
+    },
+    {
+     "scenario": "free_fall",
+     "n": 129,
+     "ranking_acc": 0.767,
+     "detected": 0.574,
+     "class_acc": 0.496,
+     "mean_tiou": 0.332
+    },
+    {
+     "scenario": "ramp_slide",
+     "n": 178,
+     "ranking_acc": 0.815,
+     "detected": 0.697,
+     "class_acc": 0.534,
+     "mean_tiou": 0.372
+    }
+   ],
+   "camera_mode": [
+    {
+     "camera_mode": "static",
+     "n": 517,
+     "ranking_acc": 0.82,
+     "detected": 0.627,
+     "class_acc": 0.495,
+     "mean_tiou": 0.333
+    }
+   ],
+   "timing": [
+    {
+     "timing": "event",
+     "n": 153,
+     "ranking_acc": 0.81,
+     "detected": 0.641,
+     "class_acc": 0.523,
+     "mean_tiou": 0.328
+    },
+    {
+     "timing": "persistent",
+     "n": 166,
+     "ranking_acc": 0.843,
+     "detected": 0.663,
+     "class_acc": 0.542,
+     "mean_tiou": 0.497
+    },
+    {
+     "timing": "transient",
+     "n": 198,
+     "ranking_acc": 0.808,
+     "detected": 0.586,
+     "class_acc": 0.434,
+     "mean_tiou": 0.2
+    }
+   ]
+  }
+ },
+ "test_id": {
+  "summary": {
+   "clips": 733,
+   "violating": 533,
+   "auroc": 0.7510975609756098,
+   "accuracy": 0.6712141882673943,
+   "pairwise_ranking_acc": 0.8048780487804879,
+   "macro_f1_4class": 0.5769701042820184,
+   "mean_tiou": 0.3587092512044007,
+   "localised_fraction": 0.797373358348968,
+   "onset_mae_frames": 8.334117647058823,
+   "offset_mae_frames": 10.849411764705883,
+   "segment_f1@0.3": 0.46817691477885653,
+   "segment_f1@0.5": 0.2912621359223301,
+   "segment_f1@0.7": 0.1423948220064725
+  },
+  "breakdown": {
+   "class": [
+    {
+     "class": 1,
+     "n": 200,
+     "ranking_acc": 0.83,
+     "detected": 0.665,
+     "class_acc": 0.56,
+     "mean_tiou": 0.461
+    },
+    {
+     "class": 2,
+     "n": 192,
+     "ranking_acc": 0.76,
+     "detected": 0.599,
+     "class_acc": 0.443,
+     "mean_tiou": 0.255
+    },
+    {
+     "class": 3,
+     "n": 141,
+     "ranking_acc": 0.83,
+     "detected": 0.674,
+     "class_acc": 0.525,
+     "mean_tiou": 0.356
+    }
+   ],
+   "subtype": [
+    {
+     "subtype": "S1.1",
+     "n": 52,
+     "ranking_acc": 0.865,
+     "detected": 0.692,
+     "class_acc": 0.635,
+     "mean_tiou": 0.468
+    },
+    {
+     "subtype": "S1.2",
+     "n": 45,
+     "ranking_acc": 0.867,
+     "detected": 0.778,
+     "class_acc": 0.622,
+     "mean_tiou": 0.538
+    },
+    {
+     "subtype": "S1.3",
+     "n": 38,
+     "ranking_acc": 0.763,
+     "detected": 0.526,
+     "class_acc": 0.368,
+     "mean_tiou": 0.384
+    },
+    {
+     "subtype": "S1.4",
+     "n": 51,
+     "ranking_acc": 0.804,
+     "detected": 0.706,
+     "class_acc": 0.627,
+     "mean_tiou": 0.499
+    },
+    {
+     "subtype": "S1.6",
+     "n": 14,
+     "ranking_acc": 0.857,
+     "detected": 0.429,
+     "class_acc": 0.357,
+     "mean_tiou": 0.251
+    },
+    {
+     "subtype": "S2.1",
+     "n": 27,
+     "ranking_acc": 0.778,
+     "detected": 0.481,
+     "class_acc": 0.259,
+     "mean_tiou": 0.224
+    },
+    {
+     "subtype": "S2.2",
+     "n": 57,
+     "ranking_acc": 0.737,
+     "detected": 0.509,
+     "class_acc": 0.351,
+     "mean_tiou": 0.078
+    },
+    {
+     "subtype": "S2.3",
+     "n": 59,
+     "ranking_acc": 0.763,
+     "detected": 0.678,
+     "class_acc": 0.576,
+     "mean_tiou": 0.397
+    },
+    {
+     "subtype": "S2.4",
+     "n": 6,
+     "ranking_acc": 0.667,
+     "detected": 0.667,
+     "class_acc": 0.333,
+     "mean_tiou": 0.412
+    },
+    {
+     "subtype": "S2.5",
+     "n": 9,
+     "ranking_acc": 1.0,
+     "detected": 0.889,
+     "class_acc": 0.889,
+     "mean_tiou": 0.37
+    },
+    {
+     "subtype": "S2.6",
+     "n": 12,
+     "ranking_acc": 0.833,
+     "detected": 0.417,
+     "class_acc": 0.167,
+     "mean_tiou": 0.045
+    },
+    {
+     "subtype": "S2.8",
+     "n": 22,
+     "ranking_acc": 0.682,
+     "detected": 0.727,
+     "class_acc": 0.545,
+     "mean_tiou": 0.394
+    },
+    {
+     "subtype": "S3.1",
+     "n": 79,
+     "ranking_acc": 0.81,
+     "detected": 0.582,
+     "class_acc": 0.418,
+     "mean_tiou": 0.32
+    },
+    {
+     "subtype": "S3.4",
+     "n": 62,
+     "ranking_acc": 0.855,
+     "detected": 0.79,
+     "class_acc": 0.661,
+     "mean_tiou": 0.402
+    }
+   ],
+   "severity": [
+    {
+     "severity": "clear",
+     "n": 224,
+     "ranking_acc": 0.786,
+     "detected": 0.656,
+     "class_acc": 0.509,
+     "mean_tiou": 0.367
+    },
+    {
+     "severity": "strong",
+     "n": 153,
+     "ranking_acc": 0.863,
+     "detected": 0.752,
+     "class_acc": 0.673,
+     "mean_tiou": 0.442
+    },
+    {
+     "severity": "subtle",
+     "n": 156,
+     "ranking_acc": 0.776,
+     "detected": 0.519,
+     "class_acc": 0.346,
+     "mean_tiou": 0.265
+    }
+   ],
+   "scenario": [
+    {
+     "scenario": "billiards",
+     "n": 234,
+     "ranking_acc": 0.791,
+     "detected": 0.615,
+     "class_acc": 0.47,
+     "mean_tiou": 0.338
+    },
+    {
+     "scenario": "free_fall",
+     "n": 110,
+     "ranking_acc": 0.809,
+     "detected": 0.564,
+     "class_acc": 0.473,
+     "mean_tiou": 0.36
+    },
+    {
+     "scenario": "ramp_slide",
+     "n": 189,
+     "ranking_acc": 0.82,
+     "detected": 0.725,
+     "class_acc": 0.577,
+     "mean_tiou": 0.383
+    }
+   ],
+   "camera_mode": [
+    {
+     "camera_mode": "static",
+     "n": 533,
+     "ranking_acc": 0.805,
+     "detected": 0.644,
+     "class_acc": 0.508,
+     "mean_tiou": 0.359
+    }
+   ],
+   "timing": [
+    {
+     "timing": "event",
+     "n": 168,
+     "ranking_acc": 0.821,
+     "detected": 0.643,
+     "class_acc": 0.482,
+     "mean_tiou": 0.335
+    },
+    {
+     "timing": "persistent",
+     "n": 154,
+     "ranking_acc": 0.792,
+     "detected": 0.701,
+     "class_acc": 0.571,
+     "mean_tiou": 0.512
+    },
+    {
+     "timing": "transient",
+     "n": 211,
+     "ranking_acc": 0.801,
+     "detected": 0.602,
+     "class_acc": 0.483,
+     "mean_tiou": 0.266
+    }
+   ]
+  }
+ },
+ "test_ood_objects": {
+  "summary": {
+   "clips": 539,
+   "violating": 389,
+   "auroc": 0.6502142245072836,
+   "accuracy": 0.5899814471243042,
+   "pairwise_ranking_acc": 0.6915167095115681,
+   "macro_f1_4class": 0.46431117964351637,
+   "mean_tiou": 0.31708694604242166,
+   "localised_fraction": 0.7223650385604113,
+   "onset_mae_frames": 8.199288256227758,
+   "offset_mae_frames": 10.395017793594306,
+   "segment_f1@0.3": 0.365296803652968,
+   "segment_f1@0.5": 0.2404870624048706,
+   "segment_f1@0.7": 0.1035007610350076
+  },
+  "breakdown": {
+   "class": [
+    {
+     "class": 1,
+     "n": 147,
+     "ranking_acc": 0.782,
+     "detected": 0.701,
+     "class_acc": 0.558,
+     "mean_tiou": 0.462
+    },
+    {
+     "class": 2,
+     "n": 139,
+     "ranking_acc": 0.554,
+     "detected": 0.396,
+     "class_acc": 0.216,
+     "mean_tiou": 0.158
+    },
+    {
+     "class": 3,
+     "n": 103,
+     "ranking_acc": 0.748,
+     "detected": 0.583,
+     "class_acc": 0.427,
+     "mean_tiou": 0.324
+    }
+   ],
+   "subtype": [
+    {
+     "subtype": "S1.1",
+     "n": 27,
+     "ranking_acc": 0.815,
+     "detected": 0.778,
+     "class_acc": 0.704,
+     "mean_tiou": 0.481
+    },
+    {
+     "subtype": "S1.2",
+     "n": 38,
+     "ranking_acc": 0.816,
+     "detected": 0.579,
+     "class_acc": 0.368,
+     "mean_tiou": 0.435
+    },
+    {
+     "subtype": "S1.3",
+     "n": 27,
+     "ranking_acc": 0.704,
+     "detected": 0.556,
+     "class_acc": 0.37,
+     "mean_tiou": 0.463
+    },
+    {
+     "subtype": "S1.4",
+     "n": 40,
+     "ranking_acc": 0.825,
+     "detected": 0.85,
+     "class_acc": 0.75,
+     "mean_tiou": 0.501
+    },
+    {
+     "subtype": "S1.6",
+     "n": 15,
+     "ranking_acc": 0.667,
+     "detected": 0.733,
+     "class_acc": 0.6,
+     "mean_tiou": 0.393
+    },
+    {
+     "subtype": "S2.1",
+     "n": 25,
+     "ranking_acc": 0.44,
+     "detected": 0.36,
+     "class_acc": 0.28,
+     "mean_tiou": 0.149
+    },
+    {
+     "subtype": "S2.2",
+     "n": 43,
+     "ranking_acc": 0.605,
+     "detected": 0.349,
+     "class_acc": 0.116,
+     "mean_tiou": 0.046
+    },
+    {
+     "subtype": "S2.3",
+     "n": 41,
+     "ranking_acc": 0.585,
+     "detected": 0.415,
+     "class_acc": 0.268,
+     "mean_tiou": 0.277
+    },
+    {
+     "subtype": "S2.4",
+     "n": 6,
+     "ranking_acc": 0.667,
+     "detected": 0.333,
+     "class_acc": 0.0,
+     "mean_tiou": 0.232
+    },
+    {
+     "subtype": "S2.5",
+     "n": 8,
+     "ranking_acc": 0.625,
+     "detected": 0.75,
+     "class_acc": 0.625,
+     "mean_tiou": 0.354
+    },
+    {
+     "subtype": "S2.6",
+     "n": 16,
+     "ranking_acc": 0.438,
+     "detected": 0.375,
+     "class_acc": 0.125,
+     "mean_tiou": 0.041
+    },
+    {
+     "subtype": "S3.1",
+     "n": 50,
+     "ranking_acc": 0.7,
+     "detected": 0.58,
+     "class_acc": 0.4,
+     "mean_tiou": 0.334
+    },
+    {
+     "subtype": "S3.4",
+     "n": 53,
+     "ranking_acc": 0.792,
+     "detected": 0.585,
+     "class_acc": 0.453,
+     "mean_tiou": 0.315
+    }
+   ],
+   "severity": [
+    {
+     "severity": "clear",
+     "n": 170,
+     "ranking_acc": 0.7,
+     "detected": 0.524,
+     "class_acc": 0.341,
+     "mean_tiou": 0.31
+    },
+    {
+     "severity": "strong",
+     "n": 81,
+     "ranking_acc": 0.827,
+     "detected": 0.716,
+     "class_acc": 0.654,
+     "mean_tiou": 0.4
+    },
+    {
+     "severity": "subtle",
+     "n": 138,
+     "ranking_acc": 0.601,
+     "detected": 0.514,
+     "class_acc": 0.326,
+     "mean_tiou": 0.277
+    }
+   ],
+   "scenario": [
+    {
+     "scenario": "billiards",
+     "n": 160,
+     "ranking_acc": 0.675,
+     "detected": 0.556,
+     "class_acc": 0.356,
+     "mean_tiou": 0.311
+    },
+    {
+     "scenario": "free_fall",
+     "n": 70,
+     "ranking_acc": 0.614,
+     "detected": 0.486,
+     "class_acc": 0.371,
+     "mean_tiou": 0.264
+    },
+    {
+     "scenario": "ramp_slide",
+     "n": 159,
+     "ranking_acc": 0.742,
+     "detected": 0.597,
+     "class_acc": 0.459,
+     "mean_tiou": 0.347
+    }
+   ],
+   "camera_mode": [
+    {
+     "camera_mode": "static",
+     "n": 389,
+     "ranking_acc": 0.692,
+     "detected": 0.56,
+     "class_acc": 0.401,
+     "mean_tiou": 0.317
+    }
+   ],
+   "timing": [
+    {
+     "timing": "event",
+     "n": 128,
+     "ranking_acc": 0.688,
+     "detected": 0.539,
+     "class_acc": 0.398,
+     "mean_tiou": 0.29
+    },
+    {
+     "timing": "persistent",
+     "n": 102,
+     "ranking_acc": 0.667,
+     "detected": 0.588,
+     "class_acc": 0.422,
+     "mean_tiou": 0.487
+    },
+    {
+     "timing": "transient",
+     "n": 159,
+     "ranking_acc": 0.711,
+     "detected": 0.56,
+     "class_acc": 0.39,
+     "mean_tiou": 0.23
+    }
+   ]
+  }
+ },
+ "test_ood_env": {
+  "summary": {
+   "clips": 537,
+   "violating": 387,
+   "auroc": 0.6995865633074935,
+   "accuracy": 0.6405959031657356,
+   "pairwise_ranking_acc": 0.7338501291989664,
+   "macro_f1_4class": 0.5203621565396587,
+   "mean_tiou": 0.34189050113936703,
+   "localised_fraction": 0.7700258397932817,
+   "onset_mae_frames": 8.590604026845638,
+   "offset_mae_frames": 10.046979865771812,
+   "segment_f1@0.3": 0.42043795620437957,
+   "segment_f1@0.5": 0.2686131386861314,
+   "segment_f1@0.7": 0.12554744525547445
+  },
+  "breakdown": {
+   "class": [
+    {
+     "class": 1,
+     "n": 147,
+     "ranking_acc": 0.816,
+     "detected": 0.707,
+     "class_acc": 0.537,
+     "mean_tiou": 0.445
+    },
+    {
+     "class": 2,
+     "n": 141,
+     "ranking_acc": 0.667,
+     "detected": 0.518,
+     "class_acc": 0.348,
+     "mean_tiou": 0.246
+    },
+    {
+     "class": 3,
+     "n": 99,
+     "ranking_acc": 0.707,
+     "detected": 0.697,
+     "class_acc": 0.525,
+     "mean_tiou": 0.325
+    }
+   ],
+   "subtype": [
+    {
+     "subtype": "S1.1",
+     "n": 44,
+     "ranking_acc": 0.773,
+     "detected": 0.818,
+     "class_acc": 0.705,
+     "mean_tiou": 0.553
+    },
+    {
+     "subtype": "S1.2",
+     "n": 31,
+     "ranking_acc": 0.903,
+     "detected": 0.774,
+     "class_acc": 0.645,
+     "mean_tiou": 0.47
+    },
+    {
+     "subtype": "S1.3",
+     "n": 27,
+     "ranking_acc": 0.815,
+     "detected": 0.296,
+     "class_acc": 0.148,
+     "mean_tiou": 0.264
+    },
+    {
+     "subtype": "S1.4",
+     "n": 35,
+     "ranking_acc": 0.8,
+     "detected": 0.829,
+     "class_acc": 0.571,
+     "mean_tiou": 0.444
+    },
+    {
+     "subtype": "S1.6",
+     "n": 10,
+     "ranking_acc": 0.8,
+     "detected": 0.7,
+     "class_acc": 0.4,
+     "mean_tiou": 0.381
+    },
+    {
+     "subtype": "S2.1",
+     "n": 25,
+     "ranking_acc": 0.56,
+     "detected": 0.24,
+     "class_acc": 0.24,
+     "mean_tiou": 0.153
+    },
+    {
+     "subtype": "S2.2",
+     "n": 34,
+     "ranking_acc": 0.588,
+     "detected": 0.471,
+     "class_acc": 0.147,
+     "mean_tiou": 0.072
+    },
+    {
+     "subtype": "S2.3",
+     "n": 34,
+     "ranking_acc": 0.706,
+     "detected": 0.676,
+     "class_acc": 0.529,
+     "mean_tiou": 0.38
+    },
+    {
+     "subtype": "S2.4",
+     "n": 6,
+     "ranking_acc": 0.833,
+     "detected": 0.833,
+     "class_acc": 0.5,
+     "mean_tiou": 0.646
+    },
+    {
+     "subtype": "S2.5",
+     "n": 14,
+     "ranking_acc": 0.857,
+     "detected": 0.643,
+     "class_acc": 0.5,
+     "mean_tiou": 0.381
+    },
+    {
+     "subtype": "S2.6",
+     "n": 14,
+     "ranking_acc": 0.714,
+     "detected": 0.5,
+     "class_acc": 0.214,
+     "mean_tiou": 0.093
+    },
+    {
+     "subtype": "S2.8",
+     "n": 14,
+     "ranking_acc": 0.643,
+     "detected": 0.5,
+     "class_acc": 0.5,
+     "mean_tiou": 0.361
+    },
+    {
+     "subtype": "S3.1",
+     "n": 54,
+     "ranking_acc": 0.741,
+     "detected": 0.778,
+     "class_acc": 0.574,
+     "mean_tiou": 0.314
+    },
+    {
+     "subtype": "S3.4",
+     "n": 45,
+     "ranking_acc": 0.667,
+     "detected": 0.6,
+     "class_acc": 0.467,
+     "mean_tiou": 0.338
+    }
+   ],
+   "severity": [
+    {
+     "severity": "clear",
+     "n": 154,
+     "ranking_acc": 0.734,
+     "detected": 0.604,
+     "class_acc": 0.396,
+     "mean_tiou": 0.359
+    },
+    {
+     "severity": "strong",
+     "n": 98,
+     "ranking_acc": 0.857,
+     "detected": 0.857,
+     "class_acc": 0.724,
+     "mean_tiou": 0.441
+    },
+    {
+     "severity": "subtle",
+     "n": 135,
+     "ranking_acc": 0.644,
+     "detected": 0.511,
+     "class_acc": 0.356,
+     "mean_tiou": 0.251
+    }
+   ],
+   "scenario": [
+    {
+     "scenario": "billiards",
+     "n": 162,
+     "ranking_acc": 0.704,
+     "detected": 0.673,
+     "class_acc": 0.463,
+     "mean_tiou": 0.311
+    },
+    {
+     "scenario": "free_fall",
+     "n": 93,
+     "ranking_acc": 0.796,
+     "detected": 0.591,
+     "class_acc": 0.452,
+     "mean_tiou": 0.366
+    },
+    {
+     "scenario": "ramp_slide",
+     "n": 132,
+     "ranking_acc": 0.727,
+     "detected": 0.621,
+     "class_acc": 0.477,
+     "mean_tiou": 0.363
+    }
+   ],
+   "camera_mode": [
+    {
+     "camera_mode": "static",
+     "n": 387,
+     "ranking_acc": 0.734,
+     "detected": 0.636,
+     "class_acc": 0.465,
+     "mean_tiou": 0.342
+    }
+   ],
+   "timing": [
+    {
+     "timing": "event",
+     "n": 124,
+     "ranking_acc": 0.677,
+     "detected": 0.605,
+     "class_acc": 0.468,
+     "mean_tiou": 0.29
+    },
+    {
+     "timing": "persistent",
+     "n": 118,
+     "ranking_acc": 0.788,
+     "detected": 0.695,
+     "class_acc": 0.551,
+     "mean_tiou": 0.512
+    },
+    {
+     "timing": "transient",
+     "n": 145,
+     "ranking_acc": 0.738,
+     "detected": 0.614,
+     "class_acc": 0.393,
+     "mean_tiou": 0.247
+    }
+   ]
+  }
+ },
+ "test_ood_scenario": {
+  "summary": {
+   "clips": 440,
+   "violating": 290,
+   "auroc": 0.6505287356321838,
+   "accuracy": 0.6681818181818182,
+   "pairwise_ranking_acc": 0.7103448275862069,
+   "macro_f1_4class": 0.4132778136170359,
+   "mean_tiou": 0.41136338022859176,
+   "localised_fraction": 0.8586206896551725,
+   "onset_mae_frames": 9.51004016064257,
+   "offset_mae_frames": 12.779116465863455,
+   "segment_f1@0.3": 0.4208754208754209,
+   "segment_f1@0.5": 0.25252525252525254,
+   "segment_f1@0.7": 0.15151515151515152
+  },
+  "breakdown": {
+   "class": [
+    {
+     "class": 1,
+     "n": 150,
+     "ranking_acc": 0.8,
+     "detected": 0.853,
+     "class_acc": 0.627,
+     "mean_tiou": 0.488
+    },
+    {
+     "class": 2,
+     "n": 140,
+     "ranking_acc": 0.614,
+     "detected": 0.686,
+     "class_acc": 0.55,
+     "mean_tiou": 0.329
+    }
+   ],
+   "subtype": [
+    {
+     "subtype": "S1.1",
+     "n": 65,
+     "ranking_acc": 0.785,
+     "detected": 0.892,
+     "class_acc": 0.723,
+     "mean_tiou": 0.484
+    },
+    {
+     "subtype": "S1.2",
+     "n": 19,
+     "ranking_acc": 0.842,
+     "detected": 0.842,
+     "class_acc": 0.474,
+     "mean_tiou": 0.541
+    },
+    {
+     "subtype": "S1.3",
+     "n": 3,
+     "ranking_acc": 0.667,
+     "detected": 0.667,
+     "class_acc": 0.0,
+     "mean_tiou": 0.633
+    },
+    {
+     "subtype": "S1.4",
+     "n": 51,
+     "ranking_acc": 0.824,
+     "detected": 0.843,
+     "class_acc": 0.686,
+     "mean_tiou": 0.493
+    },
+    {
+     "subtype": "S1.6",
+     "n": 12,
+     "ranking_acc": 0.75,
+     "detected": 0.75,
+     "class_acc": 0.25,
+     "mean_tiou": 0.368
+    },
+    {
+     "subtype": "S2.1",
+     "n": 17,
+     "ranking_acc": 0.647,
+     "detected": 0.471,
+     "class_acc": 0.412,
+     "mean_tiou": 0.123
+    },
+    {
+     "subtype": "S2.2",
+     "n": 24,
+     "ranking_acc": 0.458,
+     "detected": 0.583,
+     "class_acc": 0.5,
+     "mean_tiou": 0.068
+    },
+    {
+     "subtype": "S2.3",
+     "n": 26,
+     "ranking_acc": 0.769,
+     "detected": 0.923,
+     "class_acc": 0.808,
+     "mean_tiou": 0.548
+    },
+    {
+     "subtype": "S2.4",
+     "n": 29,
+     "ranking_acc": 0.483,
+     "detected": 0.586,
+     "class_acc": 0.379,
+     "mean_tiou": 0.389
+    },
+    {
+     "subtype": "S2.5",
+     "n": 22,
+     "ranking_acc": 0.727,
+     "detected": 0.864,
+     "class_acc": 0.727,
+     "mean_tiou": 0.405
+    },
+    {
+     "subtype": "S2.6",
+     "n": 6,
+     "ranking_acc": 0.667,
+     "detected": 0.333,
+     "class_acc": 0.333,
+     "mean_tiou": 0.181
+    },
+    {
+     "subtype": "S2.8",
+     "n": 16,
+     "ranking_acc": 0.625,
+     "detected": 0.75,
+     "class_acc": 0.5,
+     "mean_tiou": 0.427
+    }
+   ],
+   "severity": [
+    {
+     "severity": "clear",
+     "n": 116,
+     "ranking_acc": 0.647,
+     "detected": 0.784,
+     "class_acc": 0.595,
+     "mean_tiou": 0.386
+    },
+    {
+     "severity": "strong",
+     "n": 76,
+     "ranking_acc": 0.842,
+     "detected": 0.829,
+     "class_acc": 0.697,
+     "mean_tiou": 0.477
+    },
+    {
+     "severity": "subtle",
+     "n": 98,
+     "ranking_acc": 0.684,
+     "detected": 0.714,
+     "class_acc": 0.5,
+     "mean_tiou": 0.391
+    }
+   ],
+   "scenario": [
+    {
+     "scenario": "projectile_bin",
+     "n": 290,
+     "ranking_acc": 0.71,
+     "detected": 0.772,
+     "class_acc": 0.59,
+     "mean_tiou": 0.411
+    }
+   ],
+   "camera_mode": [
+    {
+     "camera_mode": "static",
+     "n": 290,
+     "ranking_acc": 0.71,
+     "detected": 0.772,
+     "class_acc": 0.59,
+     "mean_tiou": 0.411
+    }
+   ],
+   "timing": [
+    {
+     "timing": "event",
+     "n": 17,
+     "ranking_acc": 0.647,
+     "detected": 0.471,
+     "class_acc": 0.412,
+     "mean_tiou": 0.123
+    },
+    {
+     "timing": "persistent",
+     "n": 138,
+     "ranking_acc": 0.725,
+     "detected": 0.819,
+     "class_acc": 0.565,
+     "mean_tiou": 0.552
+    },
+    {
+     "timing": "transient",
+     "n": 135,
+     "ranking_acc": 0.704,
+     "detected": 0.763,
+     "class_acc": 0.637,
+     "mean_tiou": 0.304
+    }
+   ]
+  }
+ },
+ "test_ood_subtype": {
+  "summary": {
+   "clips": 376,
+   "violating": 226,
+   "auroc": 0.6700000000000002,
+   "accuracy": 0.6037234042553191,
+   "pairwise_ranking_acc": 0.7123893805309734,
+   "macro_f1_4class": 0.30931942915071753,
+   "mean_tiou": 0.3789371563800526,
+   "localised_fraction": 0.7964601769911505,
+   "onset_mae_frames": 10.166666666666666,
+   "offset_mae_frames": 9.811111111111112,
+   "segment_f1@0.3": 0.2793017456359102,
+   "segment_f1@0.5": 0.18952618453865336,
+   "segment_f1@0.7": 0.10972568578553615
+  },
+  "breakdown": {
+   "class": [
+    {
+     "class": 1,
+     "n": 113,
+     "ranking_acc": 0.796,
+     "detected": 0.664,
+     "class_acc": 0.434,
+     "mean_tiou": 0.464
+    },
+    {
+     "class": 2,
+     "n": 113,
+     "ranking_acc": 0.628,
+     "detected": 0.451,
+     "class_acc": 0.124,
+     "mean_tiou": 0.294
+    }
+   ],
+   "subtype": [
+    {
+     "subtype": "S1.5",
+     "n": 113,
+     "ranking_acc": 0.796,
+     "detected": 0.664,
+     "class_acc": 0.434,
+     "mean_tiou": 0.464
+    },
+    {
+     "subtype": "S2.7",
+     "n": 113,
+     "ranking_acc": 0.628,
+     "detected": 0.451,
+     "class_acc": 0.124,
+     "mean_tiou": 0.294
+    }
+   ],
+   "severity": [
+    {
+     "severity": "clear",
+     "n": 96,
+     "ranking_acc": 0.719,
+     "detected": 0.542,
+     "class_acc": 0.292,
+     "mean_tiou": 0.379
+    },
+    {
+     "severity": "strong",
+     "n": 60,
+     "ranking_acc": 0.683,
+     "detected": 0.617,
+     "class_acc": 0.233,
+     "mean_tiou": 0.421
+    },
+    {
+     "severity": "subtle",
+     "n": 70,
+     "ranking_acc": 0.729,
+     "detected": 0.529,
+     "class_acc": 0.3,
+     "mean_tiou": 0.343
+    }
+   ],
+   "scenario": [
+    {
+     "scenario": "billiards",
+     "n": 77,
+     "ranking_acc": 0.818,
+     "detected": 0.636,
+     "class_acc": 0.338,
+     "mean_tiou": 0.381
+    },
+    {
+     "scenario": "free_fall",
+     "n": 48,
+     "ranking_acc": 0.708,
+     "detected": 0.667,
+     "class_acc": 0.438,
+     "mean_tiou": 0.398
+    },
+    {
+     "scenario": "ramp_slide",
+     "n": 101,
+     "ranking_acc": 0.634,
+     "detected": 0.446,
+     "class_acc": 0.158,
+     "mean_tiou": 0.368
+    }
+   ],
+   "camera_mode": [
+    {
+     "camera_mode": "static",
+     "n": 226,
+     "ranking_acc": 0.712,
+     "detected": 0.558,
+     "class_acc": 0.279,
+     "mean_tiou": 0.379
+    }
+   ],
+   "timing": [
+    {
+     "timing": "persistent",
+     "n": 145,
+     "ranking_acc": 0.703,
+     "detected": 0.524,
+     "class_acc": 0.276,
+     "mean_tiou": 0.424
+    },
+    {
+     "timing": "transient",
+     "n": 81,
+     "ranking_acc": 0.728,
+     "detected": 0.617,
+     "class_acc": 0.284,
+     "mean_tiou": 0.299
+    }
+   ]
+  }
+ },
+ "test_renderer": {
+  "summary": {
+   "clips": 114,
+   "violating": 84,
+   "auroc": 0.6825396825396826,
+   "accuracy": 0.7192982456140351,
+   "pairwise_ranking_acc": 0.7142857142857143,
+   "macro_f1_4class": 0.47796958657614397,
+   "mean_tiou": 0.41136688243349057,
+   "localised_fraction": 0.8809523809523809,
+   "onset_mae_frames": 8.5,
+   "offset_mae_frames": 10.77027027027027,
+   "segment_f1@0.3": 0.39080459770114945,
+   "segment_f1@0.5": 0.2988505747126437,
+   "segment_f1@0.7": 0.11494252873563218
+  },
+  "breakdown": {
+   "class": [
+    {
+     "class": 1,
+     "n": 30,
+     "ranking_acc": 0.733,
+     "detected": 0.9,
+     "class_acc": 0.7,
+     "mean_tiou": 0.581
+    },
+    {
+     "class": 2,
+     "n": 30,
+     "ranking_acc": 0.667,
+     "detected": 0.767,
+     "class_acc": 0.467,
+     "mean_tiou": 0.286
+    },
+    {
+     "class": 3,
+     "n": 24,
+     "ranking_acc": 0.75,
+     "detected": 0.875,
+     "class_acc": 0.375,
+     "mean_tiou": 0.356
+    }
+   ],
+   "subtype": [
+    {
+     "subtype": "S1.1",
+     "n": 4,
+     "ranking_acc": 1.0,
+     "detected": 1.0,
+     "class_acc": 1.0,
+     "mean_tiou": 0.565
+    },
+    {
+     "subtype": "S1.2",
+     "n": 4,
+     "ranking_acc": 0.5,
+     "detected": 0.75,
+     "class_acc": 0.5,
+     "mean_tiou": 0.396
+    },
+    {
+     "subtype": "S1.3",
+     "n": 8,
+     "ranking_acc": 0.75,
+     "detected": 0.75,
+     "class_acc": 0.625,
+     "mean_tiou": 0.665
+    },
+    {
+     "subtype": "S1.4",
+     "n": 12,
+     "ranking_acc": 0.667,
+     "detected": 1.0,
+     "class_acc": 0.667,
+     "mean_tiou": 0.589
+    },
+    {
+     "subtype": "S1.6",
+     "n": 2,
+     "ranking_acc": 1.0,
+     "detected": 1.0,
+     "class_acc": 1.0,
+     "mean_tiou": 0.607
+    },
+    {
+     "subtype": "S2.1",
+     "n": 7,
+     "ranking_acc": 0.286,
+     "detected": 0.571,
+     "class_acc": 0.429,
+     "mean_tiou": 0.168
+    },
+    {
+     "subtype": "S2.2",
+     "n": 8,
+     "ranking_acc": 0.625,
+     "detected": 0.625,
+     "class_acc": 0.375,
+     "mean_tiou": 0.069
+    },
+    {
+     "subtype": "S2.3",
+     "n": 10,
+     "ranking_acc": 1.0,
+     "detected": 1.0,
+     "class_acc": 0.5,
+     "mean_tiou": 0.559
+    },
+    {
+     "subtype": "S2.4",
+     "n": 1,
+     "ranking_acc": 0.0,
+     "detected": 0.0,
+     "class_acc": 0.0,
+     "mean_tiou": 0.029
+    },
+    {
+     "subtype": "S2.6",
+     "n": 2,
+     "ranking_acc": 1.0,
+     "detected": 1.0,
+     "class_acc": 1.0,
+     "mean_tiou": 0.133
+    },
+    {
+     "subtype": "S2.8",
+     "n": 2,
+     "ranking_acc": 0.5,
+     "detected": 1.0,
+     "class_acc": 0.5,
+     "mean_tiou": 0.474
+    },
+    {
+     "subtype": "S3.1",
+     "n": 13,
+     "ranking_acc": 0.692,
+     "detected": 0.923,
+     "class_acc": 0.385,
+     "mean_tiou": 0.35
+    },
+    {
+     "subtype": "S3.4",
+     "n": 11,
+     "ranking_acc": 0.818,
+     "detected": 0.818,
+     "class_acc": 0.364,
+     "mean_tiou": 0.364
+    }
+   ],
+   "severity": [
+    {
+     "severity": "clear",
+     "n": 35,
+     "ranking_acc": 0.686,
+     "detected": 0.771,
+     "class_acc": 0.429,
+     "mean_tiou": 0.357
+    },
+    {
+     "severity": "strong",
+     "n": 26,
+     "ranking_acc": 0.769,
+     "detected": 0.885,
+     "class_acc": 0.731,
+     "mean_tiou": 0.512
+    },
+    {
+     "severity": "subtle",
+     "n": 23,
+     "ranking_acc": 0.696,
+     "detected": 0.913,
+     "class_acc": 0.435,
+     "mean_tiou": 0.38
+    }
+   ],
+   "scenario": [
+    {
+     "scenario": "billiards",
+     "n": 39,
+     "ranking_acc": 0.692,
+     "detected": 0.872,
+     "class_acc": 0.513,
+     "mean_tiou": 0.39
+    },
+    {
+     "scenario": "free_fall",
+     "n": 12,
+     "ranking_acc": 0.417,
+     "detected": 0.75,
+     "class_acc": 0.5,
+     "mean_tiou": 0.359
+    },
+    {
+     "scenario": "ramp_slide",
+     "n": 33,
+     "ranking_acc": 0.848,
+     "detected": 0.848,
+     "class_acc": 0.545,
+     "mean_tiou": 0.455
+    }
+   ],
+   "camera_mode": [
+    {
+     "camera_mode": "static",
+     "n": 84,
+     "ranking_acc": 0.714,
+     "detected": 0.845,
+     "class_acc": 0.524,
+     "mean_tiou": 0.411
+    }
+   ],
+   "timing": [
+    {
+     "timing": "event",
+     "n": 31,
+     "ranking_acc": 0.645,
+     "detected": 0.806,
+     "class_acc": 0.387,
+     "mean_tiou": 0.314
+    },
+    {
+     "timing": "persistent",
+     "n": 21,
+     "ranking_acc": 0.81,
+     "detected": 0.952,
+     "class_acc": 0.714,
+     "mean_tiou": 0.7
+    },
+    {
+     "timing": "transient",
+     "n": 32,
+     "ranking_acc": 0.719,
+     "detected": 0.812,
+     "class_acc": 0.531,
+     "mean_tiou": 0.317
+    }
+   ]
+  }
+ },
+ "train": {
+  "summary": {
+   "clips": 6834,
+   "violating": 4934,
+   "auroc": 0.9833424359439336,
+   "accuracy": 0.8573309920983319,
+   "pairwise_ranking_acc": 0.9993919740575598,
+   "macro_f1_4class": 0.8540688936577359,
+   "mean_tiou": 0.5155940825632918,
+   "localised_fraction": 0.9473044183218484,
+   "onset_mae_frames": 6.888532306375695,
+   "offset_mae_frames": 6.419341035515618,
+   "segment_f1@0.3": 0.7966006932796601,
+   "segment_f1@0.5": 0.561780163256178,
+   "segment_f1@0.7": 0.28446829922844685
+  },
+  "breakdown": {
+   "class": [
+    {
+     "class": 1,
+     "n": 1877,
+     "ranking_acc": 1.0,
+     "detected": 0.908,
+     "class_acc": 0.902,
+     "mean_tiou": 0.666
+    },
+    {
+     "class": 2,
+     "n": 1817,
+     "ranking_acc": 0.998,
+     "detected": 0.591,
+     "class_acc": 0.562,
+     "mean_tiou": 0.408
+    },
+    {
+     "class": 3,
+     "n": 1240,
+     "ranking_acc": 1.0,
+     "detected": 0.973,
+     "class_acc": 0.968,
+     "mean_tiou": 0.445
+    }
+   ],
+   "subtype": [
+    {
+     "subtype": "S1.1",
+     "n": 479,
+     "ranking_acc": 1.0,
+     "detected": 0.977,
+     "class_acc": 0.977,
+     "mean_tiou": 0.688
+    },
+    {
+     "subtype": "S1.2",
+     "n": 498,
+     "ranking_acc": 1.0,
+     "detected": 0.861,
+     "class_acc": 0.855,
+     "mean_tiou": 0.663
+    },
+    {
+     "subtype": "S1.3",
+     "n": 335,
+     "ranking_acc": 1.0,
+     "detected": 0.818,
+     "class_acc": 0.809,
+     "mean_tiou": 0.655
+    },
+    {
+     "subtype": "S1.4",
+     "n": 434,
+     "ranking_acc": 1.0,
+     "detected": 0.956,
+     "class_acc": 0.947,
+     "mean_tiou": 0.665
+    },
+    {
+     "subtype": "S1.6",
+     "n": 131,
+     "ranking_acc": 1.0,
+     "detected": 0.901,
+     "class_acc": 0.893,
+     "mean_tiou": 0.635
+    },
+    {
+     "subtype": "S2.1",
+     "n": 247,
+     "ranking_acc": 1.0,
+     "detected": 0.466,
+     "class_acc": 0.462,
+     "mean_tiou": 0.305
+    },
+    {
+     "subtype": "S2.2",
+     "n": 525,
+     "ranking_acc": 1.0,
+     "detected": 0.213,
+     "class_acc": 0.137,
+     "mean_tiou": 0.142
+    },
+    {
+     "subtype": "S2.3",
+     "n": 520,
+     "ranking_acc": 0.994,
+     "detected": 0.91,
+     "class_acc": 0.906,
+     "mean_tiou": 0.624
+    },
+    {
+     "subtype": "S2.4",
+     "n": 89,
+     "ranking_acc": 1.0,
+     "detected": 0.809,
+     "class_acc": 0.809,
+     "mean_tiou": 0.654
+    },
+    {
+     "subtype": "S2.5",
+     "n": 133,
+     "ranking_acc": 1.0,
+     "detected": 0.812,
+     "class_acc": 0.782,
+     "mean_tiou": 0.587
+    },
+    {
+     "subtype": "S2.6",
+     "n": 115,
+     "ranking_acc": 1.0,
+     "detected": 0.183,
+     "class_acc": 0.139,
+     "mean_tiou": 0.155
+    },
+    {
+     "subtype": "S2.8",
+     "n": 188,
+     "ranking_acc": 1.0,
+     "detected": 0.92,
+     "class_acc": 0.92,
+     "mean_tiou": 0.599
+    },
+    {
+     "subtype": "S3.1",
+     "n": 586,
+     "ranking_acc": 1.0,
+     "detected": 0.956,
+     "class_acc": 0.954,
+     "mean_tiou": 0.416
+    },
+    {
+     "subtype": "S3.4",
+     "n": 654,
+     "ranking_acc": 1.0,
+     "detected": 0.988,
+     "class_acc": 0.98,
+     "mean_tiou": 0.472
+    }
+   ],
+   "severity": [
+    {
+     "severity": "clear",
+     "n": 1989,
+     "ranking_acc": 0.999,
+     "detected": 0.807,
+     "class_acc": 0.793,
+     "mean_tiou": 0.523
+    },
+    {
+     "severity": "strong",
+     "n": 1335,
+     "ranking_acc": 1.0,
+     "detected": 0.865,
+     "class_acc": 0.858,
+     "mean_tiou": 0.551
+    },
+    {
+     "severity": "subtle",
+     "n": 1610,
+     "ranking_acc": 0.999,
+     "detected": 0.76,
+     "class_acc": 0.741,
+     "mean_tiou": 0.477
+    }
+   ],
+   "scenario": [
+    {
+     "scenario": "billiards",
+     "n": 1785,
+     "ranking_acc": 0.999,
+     "detected": 0.767,
+     "class_acc": 0.746,
+     "mean_tiou": 0.466
+    },
+    {
+     "scenario": "free_fall",
+     "n": 1167,
+     "ranking_acc": 0.998,
+     "detected": 0.782,
+     "class_acc": 0.775,
+     "mean_tiou": 0.589
+    },
+    {
+     "scenario": "ramp_slide",
+     "n": 1982,
+     "ranking_acc": 1.0,
+     "detected": 0.859,
+     "class_acc": 0.847,
+     "mean_tiou": 0.517
+    }
+   ],
+   "camera_mode": [
+    {
+     "camera_mode": "static",
+     "n": 4934,
+     "ranking_acc": 0.999,
+     "detected": 0.807,
+     "class_acc": 0.793,
+     "mean_tiou": 0.516
+    }
+   ],
+   "timing": [
+    {
+     "timing": "event",
+     "n": 1487,
+     "ranking_acc": 1.0,
+     "detected": 0.888,
+     "class_acc": 0.884,
+     "mean_tiou": 0.422
+    },
+    {
+     "timing": "persistent",
+     "n": 1555,
+     "ranking_acc": 0.999,
+     "detected": 0.963,
+     "class_acc": 0.962,
+     "mean_tiou": 0.789
+    },
+    {
+     "timing": "transient",
+     "n": 1892,
+     "ranking_acc": 0.999,
+     "detected": 0.616,
+     "class_acc": 0.584,
+     "mean_tiou": 0.364
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,49 @@
+{
+ "asset_manifest": "f54d6907c8ea",
+ "assets": [
+  "ph_brown_photostudio_06",
+  "ph_concrete_floor_worn_02",
+  "ph_dark_wood",
+  "ph_ferndale_studio_12",
+  "ph_floral_tent",
+  "ph_granite_tile",
+  "ph_grey_plaster_03",
+  "ph_herringbone_parquet",
+  "ph_monochrome_studio_02",
+  "ph_painted_metal_shutter",
+  "ph_patterned_cobblestone_02",
+  "ph_red_sandstone_tiles",
+  "ph_reinforced_concrete_01",
+  "ph_studio_wizja_02",
+  "ph_sundowner_deck",
+  "ph_t_brick_floor_002",
+  "ph_terlenka",
+  "ph_teufelsberg_inner",
+  "ph_vestibule",
+  "ph_white_maple_veneer",
+  "ph_xanderklinge",
+  "proc_014",
+  "proc_030",
+  "proc_032",
+  "proc_047",
+  "ycb_005_tomato_soup_can",
+  "ycb_007_tuna_fish_can",
+  "ycb_008_pudding_box",
+  "ycb_017_orange",
+  "ycb_019_pitcher_base",
+  "ycb_025_mug",
+  "ycb_055_baseball",
+  "ycb_065-d_cups"
+ ],
+ "heldout_shapes": [
+  "capsule"
+ ],
+ "heldout_scenarios": [
+  "projectile_bin"
+ ],
+ "heldout_subtypes": [
+  "S1.5",
+  "S2.7",
+  "S3.3"
+ ]
+}

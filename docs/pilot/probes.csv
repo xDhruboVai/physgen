@@ -1,0 +1,8 @@
+probe,input,binary_bal_acc,four_class_bal_acc,chance_binary,chance_classes
+P1,single frame,0.5006256448262448,0.27451541159106607,0.5,0.25
+P2,first 8 frames (pre-onset),0.5,0.2665963723586629,0.5,0.25
+P3,motion energy / optical flow,0.5007143636919964,0.3478909509740498,0.5,0.25
+P4,"metadata (scenario, shapes, materials, floor, hdri)",0.5010623200060274,0.2686371440972905,0.5,0.25
+P6,high-frequency / compression stats,0.5,0.2995930050771815,0.5,0.25
+P5,"onset position only (violating clips, 3-class)",,0.34213704098729414,0.5,0.3333333333333333
+P5b,interval duration (informational: c3 is short by definition),,0.3173135210268106,0.5,0.3333333333333333

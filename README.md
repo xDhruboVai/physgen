@@ -144,6 +144,12 @@ checks the mapping against an independent reference). Fine-tuning the encoder do
 
 The real / AI-generated test set needs data collected by hand; see `docs/real_test_protocol.md`.
 
+## Pilot results
+
+The M1 pilot dataset (`docs/pilot/dataset_card.md`) and baseline results (`results/README.md`):
+frozen VideoMAE V2 + temporal head reaches test_id AUROC 0.70-0.75 and segment F1@0.5 up to 0.38;
+difficulty follows the severity levels, and OOD splits drop as expected.
+
 ## Known limits and open items
 
 - Physics backends: only PyBullet is implemented; the operations c2 needs are isolated in

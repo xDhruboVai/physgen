@@ -1,0 +1,144 @@
+{
+ "dataset": {
+  "version": "0.1.0",
+  "num_scenes": 1900,
+  "clip": {
+   "frames": 64,
+   "fps": 24,
+   "resolution": 224
+  },
+  "pairs": "compatible_all"
+ },
+ "scenarios": {
+  "free_fall": 1.0,
+  "ramp_slide": 1.0,
+  "rolling": 0.0,
+  "billiards": 1.0,
+  "stack": 0.0,
+  "dominoes": 0.0,
+  "projectile_bin": 1.0
+ },
+ "renderer": {
+  "backend": "raster",
+  "motion_blur_samples": 4,
+  "shutter": 0.5,
+  "msaa": 4,
+  "shadow_map": 2048,
+  "exposure_ev": [
+   -0.5,
+   0.5
+  ],
+  "blender": {
+   "executable": "third_party/blender-4.2.23-windows-x64/blender.exe",
+   "engine": "CYCLES",
+   "device": "OPTIX",
+   "samples": 32,
+   "denoise": true
+  }
+ },
+ "physics": {
+  "engine": "pybullet",
+  "hz": 240,
+  "internal_substeps": 4,
+  "gravity": -9.81,
+  "solver_iterations": 50
+ },
+ "violations": {
+  "classes": [
+   1,
+   2,
+   3
+  ],
+  "timing": {
+   "persistent": 0.5,
+   "transient": 0.5
+  },
+  "severity": {
+   "subtle": 0.3,
+   "clear": 0.4,
+   "strong": 0.3
+  },
+  "onset_range": [
+   0.2,
+   0.75
+  ],
+  "subtypes": {},
+  "max_attempts": 6
+ },
+ "camera": {
+  "moving_fraction": 0.0,
+  "fov_deg": [
+   35,
+   55
+  ],
+  "pitch_deg": [
+   15,
+   45
+  ],
+  "fill": [
+   0.6,
+   0.85
+  ]
+ },
+ "light": {
+  "elevation_deg": [
+   25,
+   75
+  ],
+  "color_temp_k": [
+   3500,
+   7500
+  ],
+  "softness": [
+   0.0,
+   1.0
+  ],
+  "ambient": [
+   0.15,
+   0.45
+  ]
+ },
+ "clutter": {
+  "static_distractors": [
+   0,
+   5
+  ]
+ },
+ "assets": {
+  "root": "assets",
+  "meshes": [
+   "primitives"
+  ],
+  "mesh_fraction": 0.4
+ },
+ "splits": {
+  "heldout_shapes": [
+   "capsule"
+  ],
+  "heldout_scenarios": [
+   "projectile_bin"
+  ],
+  "heldout_subtypes": [
+   "S1.5",
+   "S2.7",
+   "S3.3"
+  ]
+ },
+ "output": {
+  "format": "jpeg",
+  "jpeg_quality": 95,
+  "shard_max_clips": 256
+ },
+ "validation": {
+  "visibility_threshold": {
+   "subtle": 0.002,
+   "clear": 0.004,
+   "strong": 0.008
+  },
+  "min_motion_m": 0.05,
+  "full_render_check_fraction": 0.02
+ },
+ "runtime": {
+  "workers": 6
+ }
+}
